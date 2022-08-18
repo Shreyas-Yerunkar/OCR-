@@ -1,0 +1,191 @@
+
+{% load static %}
+
+{% block content %}
+
+<style>
+
+    
+   body {
+	color: #566787;
+	background:white;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 13px;
+}
+
+
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd00;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color:white;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color:black;
+}
+
+
+.styled-table tbody tr:hover {background-color: #D6EEEE;}
+
+
+.styled-table td {
+  border: 2px solid black;
+  padding: 0;
+  margin: 0px;
+  overflow: auto;}
+
+
+.styled-table div {
+  resize: both;
+  overflow: auto;
+  width: 120px;
+  height: 120px;
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid black;
+  display:block;
+
+}
+
+.styled-table td div {
+  border: 0;
+  width: auto;
+  height: auto;
+  min-height: 20px;
+  min-width: 20px;
+}
+
+
+img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+
+img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+    
+</style>
+
+
+
+
+
+<section class="section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="fw-bold" style="font-size: 27;">Image Database </h1>
+                    </div>
+                    <div class="card-body">
+                        <table style="width:100%" class="styled-table" rules="cols">
+                            <thead>
+                                <tr style="border-bottom:1px solid black">
+                                    <th style="font-size: 20;">  ID      </th>
+                                    <th style="font-size: 20;"> IMAGE   </th>
+                                    <th style="font-size: 20;"> DESCRIPTION    </th>
+                                 
+                                    
+                                    
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                {% for p in data %}
+    
+                                    <tr class="active-row" style="border-bottom:1px solid black">
+                                        <td width="5%">
+                                            
+                                            {{ p.id }} 
+                                        </td>
+                                        
+                                        {% if p.image_table.image %}
+                                            <td width="20%">
+                                                <a target="_blank" href="{{ p.image_table.image.url }}">
+                                                <img src="{{ p.image_table.image.url }}"  alt="" style="width:100px" 
+                                                
+                                                </a>
+                                            
+                                                
+                                            </td>
+                                
+                                        {% else %}
+                                            <td>
+                                                <img src="{% static 'D:\ocr\imgupload\imgupload\files\covers\error.png' %}" alt="" class="prod-size">
+                                            </td>
+                                       
+                                        
+                                        {% endif %}
+
+                            
+                                        <td width="30%">
+                                            
+                                            {{ p.text|linebreaks }}  
+                                        </td>
+
+
+
+                                    </tr>
+
+                                {% endfor %}
+                                
+ 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}
+
+
+
+
+
+
+
+
+
+
